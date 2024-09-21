@@ -10,34 +10,70 @@
 
     <!-- CSS Styling -->
     <style>
+        :root {
+            --bg-color-light: #f4f4f9;
+            --bg-color-dark: #1e1e1e;
+            --text-color-light: #333;
+            --text-color-dark: #f4f4f9;
+            --primary-color: #4CAF50;
+        }
+
+        body.light-theme {
+            background-color: var(--bg-color-light);
+            color: var(--text-color-light);
+        }
+
+        body.dark-theme {
+            background-color: var(--bg-color-dark);
+            color: var(--text-color-dark);
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
             line-height: 1.6;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+
         header {
-            background-color: #4CAF50;
+            background-color: var(--primary-color);
             color: white;
             padding: 20px;
             text-align: center;
+            position: relative;
         }
+
         h1 {
             margin: 0;
         }
+
         p.subtitle {
             font-size: 18px;
             color: #eee;
         }
-        
+
+        .contact {
+            margin-top: 10px;
+        }
+
+        .contact p {
+            font-size: 16px;
+            margin: 5px 0;
+            color: #fff;
+        }
+
+        .contact a {
+            color: #ffeb3b;
+            text-decoration: none;
+        }
+
         .container {
             max-width: 900px;
             margin: 20px auto;
             padding: 20px;
-            background-color: white;
+            background-color: inherit;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
@@ -48,9 +84,9 @@
 
         .section-title {
             font-size: 28px;
-            color: #4CAF50;
+            color: var(--primary-color);
             margin-bottom: 10px;
-            border-bottom: 2px solid #4CAF50;
+            border-bottom: 2px solid var(--primary-color);
             padding-bottom: 5px;
         }
 
@@ -60,15 +96,15 @@
         }
 
         ul li {
-            background: #e9f5e9;
+            background: rgba(0, 128, 0, 0.1);
             margin: 10px 0;
             padding: 10px;
-            border-left: 4px solid #4CAF50;
+            border-left: 4px solid var(--primary-color);
             border-radius: 5px;
         }
 
         ul li a {
-            color: #4CAF50;
+            color: var(--primary-color);
             text-decoration: none;
         }
 
@@ -76,15 +112,10 @@
             text-decoration: underline;
         }
 
-        .contact p {
-            font-size: 16px;
-            margin: 5px 0;
-        }
-
         footer {
             text-align: center;
             padding: 10px;
-            background-color: #f1f1f1;
+            background-color: var(--bg-color-light);
             margin-top: 20px;
             border-top: 1px solid #ddd;
         }
@@ -92,13 +123,42 @@
         footer p {
             color: #777;
         }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-toggle.dark {
+            background-color: var(--primary-color);
+            color: white;
+        }
     </style>
 </head>
-<body>
+<body class="light-theme">
 
     <header>
         <h1>Ibrahim Osama</h1>
         <p class="subtitle">Flutter Developer | Freelancer</p>
+
+        <!-- Contact Info under the name -->
+        <div class="contact">
+            <p>Email: <a href="mailto:zx.hema72@gmail.com">zx.hema72@gmail.com</a></p>
+            <p>LinkedIn: <a href="https://www.linkedin.com/in/ibrahim-osama/" target="_blank">linkedin.com/in/ibrahim-osama</a></p>
+            <p>Phone: +20 1016712190</p>
+        </div>
+
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle" id="theme-toggle">Dark Mode</button>
     </header>
 
     <div class="container">
@@ -128,15 +188,7 @@
                 <li>Flutter Instagram Clone - <a href="https://github.com/your-link">GitHub Link</a></li>
                 <li>Foody: A food delivery app - <a href="https://github.com/your-link">GitHub Link</a></li>
                 <li>Laza E-commerce - <a href="https://github.com/your-link">GitHub Link</a></li>
-                <li>Restaurant Booking App - <a href="https://github.com/your-link">GitHub Link</a></li>
-                <li>Responsive Bank Dashboard - <a href="https://github.com/your-link">GitHub Link</a></li>
-                <li>Shopy: A shopping app - <a href="https://github.com/your-link">GitHub Link</a></li>
-                <li>Quran App - <a href="https://github.com/your-link">GitHub Link</a></li>
-                <li>Bookly - <a href="https://github.com/your-link">GitHub Link</a></li>
-                <li>Notes App - <a href="https://github.com/your-link">GitHub Link</a></li>
-                <li>Chat App - <a href="https://github.com/your-link">GitHub Link</a></li>
-                <li>Weather App - <a href="https://github.com/your-link">GitHub Link</a></li>
-                <li>Shop App - <a href="https://github.com/your-link">GitHub Link</a></li>
+                <!-- Add more projects as necessary -->
             </ul>
         </div>
 
@@ -156,24 +208,32 @@
                 <li>Complete Flutter & Dart Development</li>
                 <li>Flutter Advanced Course: Bloc and MVVM Pattern</li>
                 <li>Mastering Flutter: Responsive and Adaptive UI Design</li>
-                <li>Google Maps Integration Guide</li>
-                <li>Flutter Animation Course in Arabic</li>
-                <li>Flutter Local Notification Course</li>
-                <li>Git and GitHub</li>
+                <!-- Add more courses as necessary -->
             </ul>
-        </div>
-
-        <!-- Contact Section -->
-        <div class="section contact">
-            <h2 class="section-title">Contact</h2>
-            <p>Email: <a href="mailto:zx.hema72@gmail.com">zx.hema72@gmail.com</a></p>
-            <p>Phone: +20 1016712190</p>
         </div>
     </div>
 
     <footer>
         <p>© 2024 Ibrahim Osama. All Rights Reserved.</p>
     </footer>
+
+    <!-- JavaScript for Theme Toggle -->
+    <script>
+        const toggleButton = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        toggleButton.addEventListener('click', function() {
+            if (body.classList.contains('light-theme')) {
+                body.classList.replace('light-theme', 'dark-theme');
+                toggleButton.textContent = 'Light Mode';
+                toggleButton.classList.add('dark');
+            } else {
+                body.classList.replace('dark-theme', 'light-theme');
+                toggleButton.textContent = 'Dark Mode';
+                toggleButton.classList.remove('dark');
+            }
+        });
+    </script>
 
 </body>
 </html>
