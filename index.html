@@ -1,254 +1,474 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ibrahim Osama CV</title>
-
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="https://example.com/cv-icon.png">
-
-    <!-- CSS Styling -->
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            overflow-x: hidden;
-        }
-
-        /* Particle Background */
-        .particle-background {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, #e0f7fa, #e0f4f8);
-            overflow: hidden;
-            z-index: -1;
-        }
-
-        .particle {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.8);
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            animation: drift 20s infinite ease-in-out;
-        }
-
-        @keyframes drift {
-            0% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(50vh);
-            }
-            100% {
-                transform: translateY(-50vh);
-            }
-        }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 40px;
-            text-align: center;
-        }
-
-        h1 {
-            margin: 0;
-        }
-
-        p.subtitle {
-            font-size: 20px;
-            color: #eee;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 50px auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1s forwards;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .section {
-            margin-bottom: 40px;
-        }
-
-        .section-title {
-            font-size: 28px;
-            color: #4CAF50;
-            margin-bottom: 10px;
-            border-bottom: 2px solid #4CAF50;
-            padding-bottom: 5px;
-            transition: color 0.3s;
-        }
-
-        .section-title:hover {
-            color: #1e8c3a;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        ul li {
-            background: #e9f5e9;
-            margin: 10px 0;
-            padding: 10px;
-            border-left: 4px solid #4CAF50;
-            border-radius: 5px;
-            transition: background 0.3s;
-        }
-
-        ul li:hover {
-            background: #c8e6c9;
-        }
-
-        ul li a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-
-        ul li a:hover {
-            text-decoration: underline;
-        }
-
-        .contact p {
-            font-size: 16px;
-            margin: 5px 0;
-        }
-
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #f1f1f1;
-            margin-top: 20px;
-            border-top: 1px solid #ddd;
-        }
-
-        footer p {
-            color: #777;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ibrahim Osama | Flutter Developer</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+    
+    body {
+      font-family: "Roboto", sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    
+    .main-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .card-hover {
+      transition: all 0.3s ease;
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    }
+    
+    .skill-tag {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      transition: all 0.3s ease;
+    }
+    
+    .skill-tag:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    
+    .floating {
+      animation: floating 3s ease-in-out infinite;
+    }
+    
+    @keyframes floating {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .pulse-border {
+      animation: pulse-border 2s infinite;
+    }
+    
+    @keyframes pulse-border {
+      0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+    }
+    
+    .text-gradient {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+  <div class="main-container">
+    <div class="max-w-4xl mx-auto p-6">
 
-    <!-- Particle Background -->
-    <div class="particle-background"></div>
-
-    <header>
-        <h1>Ibrahim Osama</h1>
-        <p class="subtitle">Flutter Developer | Freelancer</p>
-    </header>
-
-    <div class="container">
-        <!-- Skills Section -->
-        <div class="section">
-            <h2 class="section-title">Skills</h2>
-            <ul>
-                <li>OOP | RESTful APIs | MVVM | Clean Code | Git | Dart | Bloc Pattern | Google Maps | Local & Push Notifications | Background services | SignalR | Web Socket </li>
-                <li>Problem Solving | Flutter Development | State Management</li>
-                <li>Firebase | Communication Skills | Data Structures | Algorithms | English</li>
-            </ul>
+      <!-- Header -->
+      <header class="text-center mb-16 relative" data-aos="fade-down" data-aos-duration="1000">
+        <div class="gradient-bg rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden">
+          <div class="absolute top-0 left-0 w-full h-full opacity-10">
+            <div class="floating absolute top-4 left-4 w-20 h-20 bg-white rounded-full"></div>
+            <div class="floating absolute top-8 right-8 w-12 h-12 bg-white rounded-full" style="animation-delay: 1s;"></div>
+            <div class="floating absolute bottom-4 left-1/3 w-16 h-16 bg-white rounded-full" style="animation-delay: 2s;"></div>
+          </div>
+          
+          <div class="relative z-10">
+            <div class="w-32 h-32 bg-white rounded-full mx-auto mb-6 flex items-center justify-center pulse-border">
+              <i class="fas fa-code text-4xl text-purple-600"></i>
+            </div>
+            <h1 class="text-4xl font-bold mb-2" data-aos="fade-up" data-aos-delay="200">Ibrahim Osama</h1>
+            <p class="text-xl mb-4 opacity-90" data-aos="fade-up" data-aos-delay="400">Flutter Developer | Freelancer</p>
+            <div class="flex flex-wrap justify-center gap-4 text-sm" data-aos="fade-up" data-aos-delay="600">
+              <a href="mailto:zx.hema72@gmail.com" class="flex items-center gap-2 bg-white bg-opacity-20 px-4 py-2 rounded-full hover:bg-opacity-30 transition-all">
+                <i class="fas fa-envelope"></i>
+                zx.hema72@gmail.com
+              </a>
+              <a href="tel:+201016712190" class="flex items-center gap-2 bg-white bg-opacity-20 px-4 py-2 rounded-full hover:bg-opacity-30 transition-all">
+                <i class="fas fa-phone"></i>
+                +20 1016712190
+              </a>
+            </div>
+            <div class="flex justify-center gap-4 mt-4" data-aos="fade-up" data-aos-delay="800">
+              <a href="https://www.linkedin.com/in/ibrahim-osama-212529225/" class="flex items-center gap-2 bg-white bg-opacity-20 px-4 py-2 rounded-full hover:bg-opacity-30 transition-all">
+                <i class="fab fa-linkedin"></i>
+                LinkedIn
+              </a>
+              <a href="https://github.com/He-ema" class="flex items-center gap-2 bg-white bg-opacity-20 px-4 py-2 rounded-full hover:bg-opacity-30 transition-all">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+          </div>
         </div>
+      </header>
 
-        <!-- Work Experience Section -->
-        <div class="section">
-            <h2 class="section-title">Work Experience</h2>
-            <ul>
-                <li>BMSCWS (Remote) – 8/2024 - Present</li>
-                <li>Freelancer – 1/2022 - Present</li>
-            </ul>
+      <!-- Skills -->
+      <section class="mb-16" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
+        <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+          <h2 class="text-2xl font-bold mb-6 text-gradient flex items-center gap-3">
+            <i class="fas fa-cogs"></i>
+            Technical Skills
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="100">
+              <i class="fab fa-flutter mr-2"></i>
+              Flutter & Dart
+            </div>
+            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="200">
+              <i class="fas fa-cubes mr-2"></i>
+              Bloc & MVVM
+            </div>
+            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="300">
+              <i class="fab fa-git-alt mr-2"></i>
+              Git & Clean Code
+            </div>
+            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="400">
+              <i class="fas fa-exchange-alt mr-2"></i>
+              RESTful APIs
+            </div>
+            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="500">
+              <i class="fas fa-fire mr-2"></i>
+              Firebase
+            </div>
+            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="600">
+              <i class="fas fa-map-marked-alt mr-2"></i>
+              Google Maps
+            </div>
+            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="700">
+              <i class="fas fa-bell mr-2"></i>
+              Push Notifications
+            </div>
+            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="800">
+              <i class="fas fa-cog mr-2"></i>
+              Background Services
+            </div>
+            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="900">
+              <i class="fas fa-plug mr-2"></i>
+              SignalR & WebSocket
+            </div>
+          </div>
         </div>
+      </section>
 
-        <!-- Projects Section -->
-        <div class="section">
-            <h2 class="section-title">Projects</h2>
-            <ul>
-                <li>Rattel - <a href="https://apps.apple.com/eg/app/rattel-%D8%B1%D8%AA%D9%84/id6740941040">App Store</a></li>
-                <li>Flutter Instagram Clone - <a href="https://github.com/He-ema/instagram_clone">GitHub Link</a></li>
-                <li>Foody: A food delivery app - <a href="https://github.com/He-ema/foody">GitHub Link</a></li>
-                <li>Laza E-commerce - <a href="https://github.com/He-ema/laza">GitHub Link</a></li>
-                <li>Restaurant Booking App - <a href="https://github.com/He-ema/resturant_booking">GitHub Link</a></li>
-                <li>Responsive Bank Dashboard - <a href="https://github.com/He-ema/responsive_bank_dashboard">GitHub Link</a></li>
-                <li>Shopy: A shopping app - <a href="https://github.com/He-ema/shopy">GitHub Link</a></li>
-                <li>Quran App - <a href="https://github.com/He-ema/Quran_app">GitHub Link</a></li>
-                <li>Bookly - <a href="https://github.com/He-ema/bookly">GitHub Link</a></li>
-                <li>Notes App - <a href="https://github.com/He-ema/Notes_app">GitHub Link</a></li>
-                <li>Chat App - <a href="https://github.com/He-ema/Chat-app">GitHub Link</a></li>
-                <li>Weather App - <a href="https://github.com/He-ema/Weather-app">GitHub Link</a></li>
-                <li>Shop App - <a href="https://github.com/He-ema/shop-App">GitHub Link</a></li>
-            </ul>
+      <!-- Projects -->
+      <section class="mb-16" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+        <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+          <h2 class="text-2xl font-bold mb-6 text-gradient flex items-center gap-3">
+            <i class="fas fa-project-diagram"></i>
+            Projects
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-xl card-hover" data-aos="flip-left" data-aos-delay="100">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-mosque text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold">Rattel</h3>
+              </div>
+              <p class="text-xs text-gray-600 mb-2">Flutter, Voice Recognition, Quran</p>
+              <p class="text-gray-700 mb-4 text-sm">Islamic app using voice to identify Quran reciters.</p>
+              <a href="https://apps.apple.com/eg/app/rattel-%D8%B1%D8%AA%D9%84/id6740941040" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                <i class="fab fa-apple"></i>
+                App Store
+              </a>
+            </div>
+            
+            <div class="bg-gradient-to-br from-pink-50 to-red-50 p-6 rounded-xl card-hover" data-aos="flip-right" data-aos-delay="200">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center">
+                  <i class="fab fa-instagram text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold">Instagram Clone</h3>
+              </div>
+              <p class="text-xs text-gray-600 mb-2">Flutter, Firebase, Social Media</p>
+              <p class="text-gray-700 mb-4 text-sm">Full-featured Instagram clone with social features.</p>
+              <a href="https://github.com/He-ema/instagram_clone" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+            
+            <div class="bg-gradient-to-br from-green-50 to-blue-50 p-6 rounded-xl card-hover" data-aos="flip-left" data-aos-delay="300">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-utensils text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold">Foody</h3>
+              </div>
+              <p class="text-xs text-gray-600 mb-2">Flutter, Food Delivery, Maps</p>
+              <p class="text-gray-700 mb-4 text-sm">Complete food delivery app with real-time tracking.</p>
+              <a href="https://github.com/He-ema/foody" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+            
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl card-hover" data-aos="flip-right" data-aos-delay="400">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-shopping-cart text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold">Laza E-commerce</h3>
+              </div>
+              <p class="text-xs text-gray-600 mb-2">Flutter, E-commerce, Payment</p>
+              <p class="text-gray-700 mb-4 text-sm">Modern e-commerce app with payment integration.</p>
+              <a href="https://github.com/He-ema/laza" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+            
+            <div class="bg-gradient-to-br from-purple-50 to-blue-50 p-6 rounded-xl card-hover" data-aos="flip-left" data-aos-delay="500">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                <i class="fas fa-calendar-check text-white"></i>
+              </div>
+                <h3 class="text-lg font-bold">Restaurant Booking</h3>
+              </div>
+              <p class="text-xs text-gray-600 mb-2">Flutter, Booking System, UI/UX</p>
+              <p class="text-gray-700 mb-4 text-sm">Restaurant reservation app with elegant design.</p>
+              <a href="https://github.com/He-ema/resturant_booking" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+            
+            <div class="bg-gradient-to-br from-blue-50 to-green-50 p-6 rounded-xl card-hover" data-aos="flip-right" data-aos-delay="600">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+                  <i class="fas fa-chart-line text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold">Bank Dashboard</h3>
+              </div>
+              <p class="text-xs text-gray-600 mb-2">Flutter, Responsive Design, Charts</p>
+              <p class="text-gray-700 mb-4 text-sm">Responsive banking dashboard with analytics.</p>
+              <a href="https://github.com/He-ema/responsive_bank_dashboard" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+            
+            <div class="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-xl card-hover" data-aos="flip-left" data-aos-delay="700">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-shopping-bag text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold">Shopy</h3>
+              </div>
+              <p class="text-xs text-gray-600 mb-2">Flutter, Shopping, E-commerce</p>
+              <p class="text-gray-700 mb-4 text-sm">A comprehensive shopping app with modern UI.</p>
+              <a href="https://github.com/He-ema/shopy" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+            
+            <div class="bg-gradient-to-br from-green-100 to-lime-100 p-6 rounded-xl card-hover" data-aos="flip-right" data-aos-delay="800">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
+                  <i class="fas fa-quran text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold">Quran App</h3>
+              </div>
+              <p class="text-xs text-gray-600 mb-2">Flutter, Islamic, Quran</p>
+              <p class="text-gray-700 mb-4 text-sm">Digital Quran app with reading features.</p>
+              <a href="https://github.com/He-ema/Quran_app" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+            
+            <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-6 rounded-xl card-hover" data-aos="flip-left" data-aos-delay="900">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-book text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold">Bookly</h3>
+              </div>
+              <p class="text-xs text-gray-600 mb-2">Flutter, Books, Reading</p>
+              <p class="text-gray-700 mb-4 text-sm">Book reading and management application.</p>
+              <a href="https://github.com/He-ema/bookly" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+            
+            <div class="bg-gradient-to-br from-red-50 to-pink-50 p-6 rounded-xl card-hover" data-aos="flip-right" data-aos-delay="1000">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-sticky-note text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold">Notes App</h3>
+              </div>
+              <p class="text-xs text-gray-600 mb-2">Flutter, Notes, Productivity</p>
+              <p class="text-gray-700 mb-4 text-sm">Simple and elegant note-taking application.</p>
+              <a href="https://github.com/He-ema/Notes_app" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+            
+            <div class="bg-gradient-to-br from-blue-100 to-cyan-100 p-6 rounded-xl card-hover" data-aos="flip-left" data-aos-delay="1100">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
+                  <i class="fas fa-comments text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold">Chat App</h3>
+              </div>
+              <p class="text-xs text-gray-600 mb-2">Flutter, Chat, Messaging</p>
+              <p class="text-gray-700 mb-4 text-sm">Real-time chat application with Firebase.</p>
+              <a href="https://github.com/He-ema/Chat-app" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+            
+            <div class="bg-gradient-to-br from-indigo-100 to-purple-100 p-6 rounded-xl card-hover" data-aos="flip-right" data-aos-delay="1200">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center">
+                  <i class="fas fa-cloud-sun text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold">Weather App</h3>
+              </div>
+              <p class="text-xs text-gray-600 mb-2">Flutter, Weather, API</p>
+              <p class="text-gray-700 mb-4 text-sm">Weather forecast app with location services.</p>
+              <a href="https://github.com/He-ema/Weather-app" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+            
+            <div class="bg-gradient-to-br from-pink-100 to-red-100 p-6 rounded-xl card-hover" data-aos="flip-left" data-aos-delay="1300">
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center">
+                  <i class="fas fa-store text-white"></i>
+                </div>
+                <h3 class="text-lg font-bold">Shop App</h3>
+              </div>
+              <p class="text-xs text-gray-600 mb-2">Flutter, Shopping, Store</p>
+              <p class="text-gray-700 mb-4 text-sm">Online shopping application with cart features.</p>
+              <a href="https://github.com/He-ema/shop-App" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
+                <i class="fab fa-github"></i>
+                GitHub
+              </a>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <!-- Education Section -->
-        <div class="section">
-            <h2 class="section-title">Education</h2>
-            <ul>
-                <li>Bachelor of Computer Science (Still a student)</li>
-                <li>Faculty of Computer and Informatics, Egypt – 10/2021 - Present</li>
-            </ul>
+      <!-- Experience -->
+      <section class="mb-16" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
+        <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+          <h2 class="text-2xl font-bold mb-6 text-gradient flex items-center gap-3">
+            <i class="fas fa-briefcase"></i>
+            Professional Experience
+          </h2>
+          <div class="space-y-6">
+            <div class="border-r-4 border-purple-500 pr-6" data-aos="slide-right" data-aos-delay="100">
+              <h3 class="text-xl font-bold mb-2">Flutter Developer at BMSCWS</h3>
+              <p class="text-gray-600 mb-3">Remote · August 2024 – Present</p>
+              <p class="text-gray-700">Working on enterprise-level Flutter applications with focus on performance optimization and scalable architecture.</p>
+            </div>
+            
+            <div class="border-r-4 border-blue-500 pr-6" data-aos="slide-right" data-aos-delay="200">
+              <h3 class="text-xl font-bold mb-2">Freelance Flutter Developer</h3>
+              <p class="text-gray-600 mb-3">Remote · January 2022 – Present</p>
+              <p class="text-gray-700">Developing custom mobile applications for various clients, specializing in e-commerce, social media, and utility apps.</p>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <!-- Courses Section -->
-        <div class="section">
-            <h2 class="section-title">Courses</h2>
-            <ul>
-                <li>Complete Flutter & Dart Development</li>
-                <li>Flutter Advanced Course: Bloc and MVVM Pattern</li>
-                <li>Mastering Flutter: Responsive and Adaptive UI Design</li>
-                <li>Google Maps Integration Guide</li>
-                <li>Flutter Animation Course in Arabic</li>
-                <li>Flutter Local Notification Course</li>
-                <li>Git and GitHub</li>
-            </ul>
-        </div>
+      <!-- Education -->
+      <section class="mb-16" data-aos="fade-up" data-aos-duration="800" data-aos-delay="800">
+        <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+          <h2 class="text-2xl font-bold mb-6 text-gradient flex items-center gap-3">
+            <i class="fas fa-graduation-cap"></i>
+            Education & Certifications
+          </h2>
+          <div class="space-y-4">
+            <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg" data-aos="slide-left" data-aos-delay="100">
+              <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-university text-white"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold">Bachelor of Computer Science (Current Student)</h3>
+                <p class="text-sm text-gray-600">Faculty of Computer and Informatics, Egypt (October 2021 - Present)</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg" data-aos="slide-right" data-aos-delay="200">
+              <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-certificate text-white"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold">Complete Flutter & Dart Development</h3>
+                <p class="text-sm text-gray-600">Comprehensive mobile app development course</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg" data-aos="slide-left" data-aos-delay="300">
+              <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-award text-white"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold">Flutter Advanced Course: Bloc and MVVM Pattern</h3>
+                <p class="text-sm text-gray-600">Advanced state management and architecture patterns</p>
+              </div>
+            </div>
 
-        <!-- Contact Section -->
-        <div class="section contact">
-            <h2 class="section-title">Contact</h2>
-            <p>Email: <a href="mailto:zx.hema72@gmail.com">zx.hema72@gmail.com</a></p>
-            <p>Phone: +20 1016712190</p>
-            <p>LinkedIn: <a href="https://www.linkedin.com/in/ibrahim-osama-212529225/">Ibrahim Osama</a> </p>
+            <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg" data-aos="slide-left" data-aos-delay="100">
+              <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-university text-white"></i>
+              </div>
+              <div>
+                <h3 class="font-semibold">Mastering Flutter: Responsive and Adaptive UI Design</h3>
+                <p class="text-sm text-gray-600">Creating responsive layouts for multiple screen sizes</p>
+              </div>
+            </div>
+            
+            
+          </div>
         </div>
+      </section>
+
+      <!-- Footer -->
+      <footer class="text-center py-8 text-gray-600" data-aos="fade-up" data-aos-duration="800">
+        <p>&copy; 2025 Ibrahim Osama. All rights reserved.</p>
+        <p class="mt-2 text-sm">Built with passion for Flutter development</p>
+      </footer>
+
     </div>
+  </div>
 
-    <footer>
-        <p>© 2024 Ibrahim Osama. All Rights Reserved.</p>
-    </footer>
-
-    <!-- Particle JavaScript -->
-    <script>
-        const particleCount = 50;
-        for (let i = 0; i < particleCount; i++) {
-            let particle = document.createElement('div');
-            particle.classList.add('particle');
-            particle.style.left = Math.random() * 100 + 'vw';
-            particle.style.top = Math.random() * 100 + 'vh';
-            particle.style.animationDuration = Math.random() * 10 + 5 + 's';
-            document.querySelector('.particle-background').appendChild(particle);
-        }
-    </script>
-
+  <!-- AOS Animation Library -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 800,
+      easing: 'ease-in-out',
+      once: true,
+      mirror: false
+    });
+  </script>
 </body>
 </html>
+
