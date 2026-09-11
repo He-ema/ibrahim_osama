@@ -1,599 +1,914 @@
-<!DOCTYPE html>
+<!doctype html>
+
 <html lang="en" dir="ltr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ibrahim Osama | Flutter Developer</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  <style>
-    @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
-    
-    body {
-      font-family: "Roboto", sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      margin: 0;
-      padding: 20px;
-      box-sizing: border-box;
-      position: relative;
-      overflow-x: hidden;
-      background-color: #f9fafb;
-    }
-    
-    .main-container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 10;
-    }
-    
-    .gradient-bg {
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    }
-    
-    .card-hover {
-      transition: all 0.3s ease;
-    }
-    
-    .card-hover:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    }
-    
-    .skill-tag {
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      transition: all 0.3s ease;
-    }
-    
-    .skill-tag:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-    }
-    
-    .floating {
-      animation: floating 3s ease-in-out infinite;
-    }
-    
-    @keyframes floating {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-    }
-    
-    .pulse-border {
-      animation: pulse-border 2s infinite;
-    }
-    
-    @keyframes pulse-border {
-      0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
-      70% { box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
-    }
-    
-    .text-gradient {
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    /* Background Animation Elements */
-    .bg-shape {
-      position: fixed;
-      border-radius: 50%;
-      opacity: 0.1;
-      z-index: 1;
-    }
-    
-    .shape-1 {
-      width: 300px;
-      height: 300px;
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      top: -150px;
-      left: -150px;
-      animation: moveShape1 20s linear infinite;
-    }
-    
-    .shape-2 {
-      width: 400px;
-      height: 400px;
-      background: linear-gradient(45deg, #764ba2, #667eea);
-      bottom: -200px;
-      right: -200px;
-      animation: moveShape2 25s linear infinite;
-    }
-    
-    .shape-3 {
-      width: 200px;
-      height: 200px;
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      top: 50%;
-      left: -100px;
-      animation: moveShape3 30s linear infinite;
-    }
-    
-    .shape-4 {
-      width: 250px;
-      height: 250px;
-      background: linear-gradient(45deg, #764ba2, #667eea);
-      bottom: 30%;
-      right: -125px;
-      animation: moveShape4 22s linear infinite;
-    }
-    
-    @keyframes moveShape1 {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      50% { transform: translate(100px, 100px) rotate(180deg); }
-      100% { transform: translate(0, 0) rotate(360deg); }
-    }
-    
-    @keyframes moveShape2 {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-100px, -100px) rotate(-180deg); }
-      100% { transform: translate(0, 0) rotate(-360deg); }
-    }
-    
-    @keyframes moveShape3 {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      50% { transform: translate(150px, -50px) rotate(180deg); }
-      100% { transform: translate(0, 0) rotate(360deg); }
-    }
-    
-    @keyframes moveShape4 {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      50% { transform: translate(-150px, 50px) rotate(-180deg); }
-      100% { transform: translate(0, 0) rotate(-360deg); }
-    }
-    
-    /* Floating particles */
-    .particle {
-      position: fixed;
-      background: rgba(102, 126, 234, 0.2);
-      border-radius: 50%;
-      z-index: 1;
-      animation: floatParticle linear infinite;
-    }
-    
-    @keyframes floatParticle {
-      0% { transform: translateY(0) translateX(0); opacity: 1; }
-      100% { transform: translateY(-100vh) translateX(100px); opacity: 0; }
-    }
-  </style>
-</head>
-<body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
-  <!-- Background Shapes -->
-  <div class="bg-shape shape-1"></div>
-  <div class="bg-shape shape-2"></div>
-  <div class="bg-shape shape-3"></div>
-  <div class="bg-shape shape-4"></div>
-  
-  <!-- Floating Particles -->
-  <div id="particles-container"></div>
-  
-  <div class="main-container">
-    <div class="max-w-4xl mx-auto p-6">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ibrahim Osama | DevOps Engineer</title>
 
-      <!-- Header -->
-      <header class="text-center mb-16 relative" data-aos="fade-down" data-aos-duration="1000">
-        <div class="gradient-bg rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden">
-          <div class="absolute top-0 left-0 w-full h-full opacity-10">
-            <div class="floating absolute top-4 left-4 w-20 h-20 bg-white rounded-full"></div>
-            <div class="floating absolute top-8 right-8 w-12 h-12 bg-white rounded-full" style="animation-delay: 1s;"></div>
-            <div class="floating absolute bottom-4 left-1/3 w-16 h-16 bg-white rounded-full" style="animation-delay: 2s;"></div>
-          </div>
-          
-          <div class="relative z-10">
-            <div class="w-32 h-32 bg-white rounded-full mx-auto mb-6 flex items-center justify-center pulse-border">
-              <i class="fas fa-code text-4xl text-purple-600"></i>
-            </div>
-            <h1 class="text-4xl font-bold mb-2" data-aos="fade-up" data-aos-delay="200">Ibrahim Osama</h1>
-            <p class="text-xl mb-4 opacity-90" data-aos="fade-up" data-aos-delay="400">Flutter Developer | Freelancer</p>
-            <div class="flex flex-wrap justify-center gap-4 text-sm" data-aos="fade-up" data-aos-delay="600">
-              <a href="mailto:zx.hema72@gmail.com" class="flex items-center gap-2 bg-white bg-opacity-20 px-4 py-2 rounded-full hover:bg-opacity-30 transition-all">
-                <i class="fas fa-envelope"></i>
-                zx.hema72@gmail.com
-              </a>
-              <a href="tel:+201016712190" class="flex items-center gap-2 bg-white bg-opacity-20 px-4 py-2 rounded-full hover:bg-opacity-30 transition-all">
-                <i class="fas fa-phone"></i>
-                +20 1016712190
-              </a>
-            </div>
-            <div class="flex justify-center gap-4 mt-4" data-aos="fade-up" data-aos-delay="800">
-              <a href="https://www.linkedin.com/in/ibrahim-osama-212529225/" class="flex items-center gap-2 bg-white bg-opacity-20 px-4 py-2 rounded-full hover:bg-opacity-30 transition-all">
-                <i class="fab fa-linkedin"></i>
-                LinkedIn
-              </a>
-              <a href="https://github.com/He-ema" class="flex items-center gap-2 bg-white bg-opacity-20 px-4 py-2 rounded-full hover:bg-opacity-30 transition-all">
-                <i class="fab fa-github"></i>
-                GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-      </header>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
 
-      <!-- Skills -->
-      <section class="mb-16" data-aos="fade-up" data-aos-duration="800" data-aos-delay="200">
-        <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
-          <h2 class="text-2xl font-bold mb-6 text-gradient flex items-center gap-3">
-            <i class="fas fa-cogs"></i>
-            Technical Skills
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="100">
-              <i class="fab fa-flutter mr-2"></i>
-              Flutter & Dart
-            </div>
-            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="200">
-              <i class="fas fa-cubes mr-2"></i>
-              Bloc & MVVM
-            </div>
-            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="300">
-              <i class="fab fa-git-alt mr-2"></i>
-              Git & Clean Code
-            </div>
-            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="400">
-              <i class="fas fa-exchange-alt mr-2"></i>
-              RESTful APIs
-            </div>
-            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="500">
-              <i class="fas fa-fire mr-2"></i>
-              Firebase
-            </div>
-            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="600">
-              <i class="fas fa-map-marked-alt mr-2"></i>
-              Google Maps
-            </div>
-            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="700">
-              <i class="fas fa-bell mr-2"></i>
-              Push Notifications
-            </div>
-            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="800">
-              <i class="fas fa-cog mr-2"></i>
-              Background Services
-            </div>
-            <div class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold" data-aos="zoom-in" data-aos-delay="900">
-              <i class="fas fa-plug mr-2"></i>
-              SignalR & WebSocket
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Projects -->
-      <section class="mb-16" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
-        <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
-          <h2 class="text-2xl font-bold mb-6 text-gradient flex items-center gap-3">
-            <i class="fas fa-project-diagram"></i>
-            Projects
-          </h2>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-xl card-hover" data-aos="flip-left" data-aos-delay="100">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                  <i class="fas fa-mosque text-white"></i>
-                </div>
-                <h3 class="text-lg font-bold">Rattel</h3>
-              </div>
-              <p class="text-xs text-gray-600 mb-2">Flutter, Voice Recognition, Quran</p>
-              <p class="text-gray-700 mb-4 text-sm">Islamic app using voice to identify Quran reciters.</p>
-              <a href="https://apps.apple.com/eg/app/rattel-%D8%B1%D8%AA%D9%84/id6740941040" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
-                <i class="fab fa-apple"></i>
-                App Store
-              </a>
-            </div>
-            
-            <div class="bg-gradient-to-br from-pink-50 to-red-50 p-6 rounded-xl card-hover" data-aos="flip-right" data-aos-delay="200">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-12 h-12 bg-pink-500 rounded-full flex items-center justify-center">
-                  <i class="fab fa-instagram text-white"></i>
-                </div>
-                <h3 class="text-lg font-bold">Instagram Clone</h3>
-              </div>
-              <p class="text-xs text-gray-600 mb-2">Flutter, Firebase, Social Media</p>
-              <p class="text-gray-700 mb-4 text-sm">Full-featured Instagram clone with social features.</p>
-              <a href="https://github.com/He-ema/instagram_clone" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
-                <i class="fab fa-github"></i>
-                GitHub
-              </a>
-            </div>
-            
-            <div class="bg-gradient-to-br from-green-50 to-blue-50 p-6 rounded-xl card-hover" data-aos="flip-left" data-aos-delay="300">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
-                  <i class="fas fa-utensils text-white"></i>
-                </div>
-                <h3 class="text-lg font-bold">Foody</h3>
-              </div>
-              <p class="text-xs text-gray-600 mb-2">Flutter, Food Delivery, Maps</p>
-              <p class="text-gray-700 mb-4 text-sm">Complete food delivery app with real-time tracking.</p>
-              <a href="https://github.com/He-ema/foody" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
-                <i class="fab fa-github"></i>
-                GitHub
-              </a>
-            </div>
-            
-            <div class="bg-gradient-to-br from-purple-50 to-pink-50 p-6 rounded-xl card-hover" data-aos="flip-right" data-aos-delay="400">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
-                  <i class="fas fa-shopping-cart text-white"></i>
-                </div>
-                <h3 class="text-lg font-bold">Laza E-commerce</h3>
-              </div>
-              <p class="text-xs text-gray-600 mb-2">Flutter, E-commerce, Payment</p>
-              <p class="text-gray-700 mb-4 text-sm">Modern e-commerce app with payment integration.</p>
-              <a href="https://github.com/He-ema/laza" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
-                <i class="fab fa-github"></i>
-                GitHub
-              </a>
-            </div>
-            
-            <div class="bg-gradient-to-br from-purple-50 to-blue-50 p-6 rounded-xl card-hover" data-aos="flip-left" data-aos-delay="500">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                <i class="fas fa-calendar-check text-white"></i>
-              </div>
-                <h3 class="text-lg font-bold">Restaurant Booking</h3>
-              </div>
-              <p class="text-xs text-gray-600 mb-2">Flutter, Booking System, UI/UX</p>
-              <p class="text-gray-700 mb-4 text-sm">Restaurant reservation app with elegant design.</p>
-              <a href="https://github.com/He-ema/resturant_booking" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
-                <i class="fab fa-github"></i>
-                GitHub
-              </a>
-            </div>
-            
-            <div class="bg-gradient-to-br from-blue-50 to-green-50 p-6 rounded-xl card-hover" data-aos="flip-right" data-aos-delay="600">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
-                  <i class="fas fa-chart-line text-white"></i>
-                </div>
-                <h3 class="text-lg font-bold">Bank Dashboard</h3>
-              </div>
-              <p class="text-xs text-gray-600 mb-2">Flutter, Responsive Design, Charts</p>
-              <p class="text-gray-700 mb-4 text-sm">Responsive banking dashboard with analytics.</p>
-              <a href="https://github.com/He-ema/responsive_bank_dashboard" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
-                <i class="fab fa-github"></i>
-                GitHub
-              </a>
-            </div>
-            
-            <div class="bg-gradient-to-br from-indigo-50 to-purple-50 p-6 rounded-xl card-hover" data-aos="flip-left" data-aos-delay="700">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-12 h-12 bg-indigo-500 rounded-full flex items-center justify-center">
-                  <i class="fas fa-shopping-bag text-white"></i>
-                </div>
-                <h3 class="text-lg font-bold">Shopy</h3>
-              </div>
-              <p class="text-xs text-gray-600 mb-2">Flutter, Shopping, E-commerce</p>
-              <p class="text-gray-700 mb-4 text-sm">A comprehensive shopping app with modern UI.</p>
-              <a href="https://github.com/He-ema/shopy" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
-                <i class="fab fa-github"></i>
-                GitHub
-              </a>
-            </div>
-            
-            <div class="bg-gradient-to-br from-green-100 to-lime-100 p-6 rounded-xl card-hover" data-aos="flip-right" data-aos-delay="800">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
-                  <i class="fas fa-quran text-white"></i>
-                </div>
-                <h3 class="text-lg font-bold">Quran App</h3>
-              </div>
-              <p class="text-xs text-gray-600 mb-2">Flutter, Islamic, Quran</p>
-              <p class="text-gray-700 mb-4 text-sm">Digital Quran app with reading features.</p>
-              <a href="https://github.com/He-ema/Quran_app" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
-                <i class="fab fa-github"></i>
-                GitHub
-              </a>
-            </div>
-            
-            <div class="bg-gradient-to-br from-yellow-50 to-orange-50 p-6 rounded-xl card-hover" data-aos="flip-left" data-aos-delay="900">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center">
-                  <i class="fas fa-book text-white"></i>
-                </div>
-                <h3 class="text-lg font-bold">Bookly</h3>
-              </div>
-              <p class="text-xs text-gray-600 mb-2">Flutter, Books, Reading</p>
-              <p class="text-gray-700 mb-4 text-sm">Book reading and management application.</p>
-              <a href="https://github.com/He-ema/bookly" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
-                <i class="fab fa-github"></i>
-                GitHub
-              </a>
-            </div>
-            
-            <div class="bg-gradient-to-br from-red-50 to-pink-50 p-6 rounded-xl card-hover" data-aos="flip-right" data-aos-delay="1000">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
-                  <i class="fas fa-sticky-note text-white"></i>
-                </div>
-                <h3 class="text-lg font-bold">Notes App</h3>
-              </div>
-              <p class="text-xs text-gray-600 mb-2">Flutter, Notes, Productivity</p>
-              <p class="text-gray-700 mb-4 text-sm">Simple and elegant note-taking application.</p>
-              <a href="https://github.com/He-ema/Notes_app" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
-                <i class="fab fa-github"></i>
-                GitHub
-              </a>
-            </div>
-            
-            <div class="bg-gradient-to-br from-blue-100 to-cyan-100 p-6 rounded-xl card-hover" data-aos="flip-left" data-aos-delay="1100">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center">
-                  <i class="fas fa-comments text-white"></i>
-                </div>
-                <h3 class="text-lg font-bold">Chat App</h3>
-              </div>
-              <p class="text-xs text-gray-600 mb-2">Flutter, Chat, Messaging</p>
-              <p class="text-gray-700 mb-4 text-sm">Real-time chat application with Firebase.</p>
-              <a href="https://github.com/He-ema/Chat-app" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
-                <i class="fab fa-github"></i>
-                GitHub
-              </a>
-            </div>
-            
-            <div class="bg-gradient-to-br from-indigo-100 to-purple-100 p-6 rounded-xl card-hover" data-aos="flip-right" data-aos-delay="1200">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-12 h-12 bg-indigo-600 rounded-full flex items-center justify-center">
-                  <i class="fas fa-cloud-sun text-white"></i>
-                </div>
-                <h3 class="text-lg font-bold">Weather App</h3>
-              </div>
-              <p class="text-xs text-gray-600 mb-2">Flutter, Weather, API</p>
-              <p class="text-gray-700 mb-4 text-sm">Weather forecast app with location services.</p>
-              <a href="https://github.com/He-ema/Weather-app" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
-                <i class="fab fa-github"></i>
-                GitHub
-              </a>
-            </div>
-            
-            <div class="bg-gradient-to-br from-pink-100 to-red-100 p-6 rounded-xl card-hover" data-aos="flip-left" data-aos-delay="1300">
-              <div class="flex items-center gap-3 mb-3">
-                <div class="w-12 h-12 bg-pink-600 rounded-full flex items-center justify-center">
-                  <i class="fas fa-store text-white"></i>
-                </div>
-                <h3 class="text-lg font-bold">Shop App</h3>
-              </div>
-              <p class="text-xs text-gray-600 mb-2">Flutter, Shopping, Store</p>
-              <p class="text-gray-700 mb-4 text-sm">Online shopping application with cart features.</p>
-              <a href="https://github.com/He-ema/shop-App" class="inline-flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold text-sm">
-                <i class="fab fa-github"></i>
-                GitHub
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Experience -->
-      <section class="mb-16" data-aos="fade-up" data-aos-duration="800" data-aos-delay="600">
-        <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
-          <h2 class="text-2xl font-bold mb-6 text-gradient flex items-center gap-3">
-            <i class="fas fa-briefcase"></i>
-            Professional Experience
-          </h2>
-          <div class="space-y-6">
-            <div class="border-r-4 border-purple-500 pr-6" data-aos="slide-right" data-aos-delay="100">
-              <h3 class="text-xl font-bold mb-2">Flutter Developer at BMSCWS</h3>
-              <p class="text-gray-600 mb-3">Remote · August 2024 – Present</p>
-              <p class="text-gray-700">Working on enterprise-level Flutter applications with focus on performance optimization and scalable architecture.</p>
-            </div>
-            
-            <div class="border-r-4 border-blue-500 pr-6" data-aos="slide-right" data-aos-delay="200">
-              <h3 class="text-xl font-bold mb-2">Freelance Flutter Developer</h3>
-              <p class="text-gray-600 mb-3">Remote · January 2022 – Present</p>
-              <p class="text-gray-700">Developing custom mobile applications for various clients, specializing in e-commerce, social media, and utility apps.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Education -->
-      <section class="mb-16" data-aos="fade-up" data-aos-duration="800" data-aos-delay="800">
-        <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
-          <h2 class="text-2xl font-bold mb-6 text-gradient flex items-center gap-3">
-            <i class="fas fa-graduation-cap"></i>
-            Education & Certifications
-          </h2>
-          <div class="space-y-4">
-            <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg" data-aos="slide-left" data-aos-delay="100">
-              <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-university text-white"></i>
-              </div>
-              <div>
-                <h3 class="font-semibold">Bachelor of Computer Science</h3>
-                <p class="text-sm text-gray-600">Faculty of Computer and Informatics, Egypt (October 2021 - 2025)</p>
-              </div>
-            </div>
-            
-            <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg" data-aos="slide-right" data-aos-delay="200">
-              <div class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-certificate text-white"></i>
-              </div>
-              <div>
-                <h3 class="font-semibold">Complete Flutter & Dart Development</h3>
-                <p class="text-sm text-gray-600">Comprehensive mobile app development course</p>
-              </div>
-            </div>
-            
-            <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg" data-aos="slide-left" data-aos-delay="300">
-              <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-award text-white"></i>
-              </div>
-              <div>
-                <h3 class="font-semibold">Flutter Advanced Course: Bloc and MVVM Pattern</h3>
-                <p class="text-sm text-gray-600">Advanced state management and architecture patterns</p>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg" data-aos="slide-left" data-aos-delay="100">
-              <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
-                <i class="fas fa-university text-white"></i>
-              </div>
-              <div>
-                <h3 class="font-semibold">Mastering Flutter: Responsive and Adaptive UI Design</h3>
-                <p class="text-sm text-gray-600">Creating responsive layouts for multiple screen sizes</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Footer -->
-      <footer class="text-center py-8 text-gray-600" data-aos="fade-up" data-aos-duration="800">
-        <p>&copy; 2025 Ibrahim Osama. All rights reserved.</p>
-        <p class="mt-2 text-sm">Built with passion for Flutter development</p>
-      </footer>
-
-    </div>
-  </div>
-
-  <!-- AOS Animation Library -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
-    });
-
-    // Create floating particles
-    function createParticles() {
-      const container = document.getElementById('particles-container');
-      const particleCount = 30;
-      
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        
-        // Random size between 2px and 6px
-        const size = Math.random() * 4 + 2;
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        
-        // Random position
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
-        
-        // Random animation duration between 10s and 20s
-        const duration = Math.random() * 10 + 10;
-        particle.style.animationDuration = `${duration}s`;
-        
-        // Random delay
-        particle.style.animationDelay = `${Math.random() * 5}s`;
-        
-        container.appendChild(particle);
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+      body {
+        font-family: "Roboto", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+        position: relative;
+        overflow-x: hidden;
+        background-color: #f9fafb;
       }
-    }
-    
-    // Initialize particles when page loads
-    window.addEventListener('load', createParticles);
-  </script>
-</body>
+      .main-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 10;
+      }
+      .gradient-bg {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      }
+      .card-hover {
+        transition: all 0.3s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+      }
+      .skill-tag {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        transition: all 0.3s ease;
+      }
+      .skill-tag:hover {
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+      .floating {
+        animation: floating 3s ease-in-out infinite;
+      }
+      @keyframes floating {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+      .pulse-border {
+        animation: pulse-border 2s infinite;
+      }
+      @keyframes pulse-border {
+        0% {
+          box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 10px rgba(102, 126, 234, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(102, 126, 234, 0);
+        }
+      }
+      .text-gradient {
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      } /* Background Animation */
+      .bg-shape {
+        position: fixed;
+        border-radius: 50%;
+        opacity: 0.1;
+        z-index: 1;
+      }
+      .shape-1 {
+        width: 300px;
+        height: 300px;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        top: -150px;
+        left: -150px;
+        animation: moveShape1 20s linear infinite;
+      }
+      .shape-2 {
+        width: 400px;
+        height: 400px;
+        background: linear-gradient(45deg, #764ba2, #667eea);
+        bottom: -200px;
+        right: -200px;
+        animation: moveShape2 25s linear infinite;
+      }
+      .shape-3 {
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(45deg, #667eea, #764ba2);
+        top: 50%;
+        left: -100px;
+        animation: moveShape3 30s linear infinite;
+      }
+      .shape-4 {
+        width: 250px;
+        height: 250px;
+        background: linear-gradient(45deg, #764ba2, #667eea);
+        bottom: 30%;
+        right: -125px;
+        animation: moveShape4 22s linear infinite;
+      }
+      @keyframes moveShape1 {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        50% {
+          transform: translate(100px, 100px) rotate(180deg);
+        }
+        100% {
+          transform: translate(0, 0) rotate(360deg);
+        }
+      }
+      @keyframes moveShape2 {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        50% {
+          transform: translate(-100px, -100px) rotate(-180deg);
+        }
+        100% {
+          transform: translate(0, 0) rotate(-360deg);
+        }
+      }
+      @keyframes moveShape3 {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        50% {
+          transform: translate(150px, -50px) rotate(180deg);
+        }
+        100% {
+          transform: translate(0, 0) rotate(360deg);
+        }
+      }
+      @keyframes moveShape4 {
+        0% {
+          transform: translate(0, 0) rotate(0deg);
+        }
+        50% {
+          transform: translate(-150px, 50px) rotate(-180deg);
+        }
+        100% {
+          transform: translate(0, 0) rotate(-360deg);
+        }
+      } /* Floating Particles */
+      .particle {
+        position: fixed;
+        background: rgba(102, 126, 234, 0.2);
+        border-radius: 50%;
+        z-index: 1;
+        animation: floatParticle linear infinite;
+      }
+      @keyframes floatParticle {
+        0% {
+          transform: translateY(0) translateX(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) translateX(100px);
+          opacity: 0;
+        }
+      } /* DevOps Pipeline */
+      .pipeline-node {
+        transition: all 0.3s ease;
+      }
+      .pipeline-node:hover {
+        transform: scale(1.08);
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-50 text-gray-800 font-sans leading-relaxed">
+    <!-- Background Shapes -->
+
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+    <div class="bg-shape shape-4"></div>
+
+    <!-- Floating Particles -->
+
+    <div id="particles-container"></div>
+
+    <div class="main-container">
+      ```
+      <div class="max-w-4xl mx-auto p-6">
+        <!-- ========================================================= -->
+        <!-- HEADER -->
+        <!-- ========================================================= -->
+
+        <header
+          class="text-center mb-16 relative"
+          data-aos="fade-down"
+          data-aos-duration="1000"
+        >
+          <div
+            class="gradient-bg rounded-3xl p-8 text-white shadow-2xl relative overflow-hidden"
+          >
+            <div class="absolute top-0 left-0 w-full h-full opacity-10">
+              <div
+                class="floating absolute top-4 left-4 w-20 h-20 bg-white rounded-full"
+              ></div>
+
+              <div
+                class="floating absolute top-8 right-8 w-12 h-12 bg-white rounded-full"
+                style="animation-delay: 1s"
+              ></div>
+
+              <div
+                class="floating absolute bottom-4 left-1/3 w-16 h-16 bg-white rounded-full"
+                style="animation-delay: 2s"
+              ></div>
+            </div>
+
+            <div class="relative z-10">
+              <div
+                class="w-32 h-32 bg-white rounded-full mx-auto mb-6 flex items-center justify-center pulse-border"
+              >
+                <i class="fas fa-cloud text-4xl text-purple-600"></i>
+              </div>
+
+              <h1
+                class="text-4xl font-bold mb-2"
+                data-aos="fade-up"
+                data-aos-delay="200"
+              >
+                Ibrahim Osama
+              </h1>
+
+              <p
+                class="text-xl mb-2 opacity-90"
+                data-aos="fade-up"
+                data-aos-delay="400"
+              >
+                DevOps Engineer | Cloud & Automation
+              </p>
+
+              <p
+                class="text-sm mb-6 opacity-80"
+                data-aos="fade-up"
+                data-aos-delay="500"
+              >
+                Flutter Developer · 2+ Years Experience
+              </p>
+
+              <!-- Contact -->
+
+              <div
+                class="flex flex-wrap justify-center gap-4 text-sm"
+                data-aos="fade-up"
+                data-aos-delay="600"
+              >
+                <a
+                  href="mailto:zx.hema72@gmail.com"
+                  class="flex items-center gap-2 bg-white bg-opacity-20 px-4 py-2 rounded-full hover:bg-opacity-30 transition-all"
+                >
+                  <i class="fas fa-envelope"></i>
+                  zx.hema72@gmail.com
+                </a>
+
+                <a
+                  href="tel:+201016712190"
+                  class="flex items-center gap-2 bg-white bg-opacity-20 px-4 py-2 rounded-full hover:bg-opacity-30 transition-all"
+                >
+                  <i class="fas fa-phone"></i>
+                  +20 1016712190
+                </a>
+              </div>
+
+              <!-- Social -->
+
+              <div
+                class="flex justify-center gap-4 mt-4"
+                data-aos="fade-up"
+                data-aos-delay="800"
+              >
+                <a
+                  href="https://www.linkedin.com/in/ibrahim-osama-212529225/"
+                  target="_blank"
+                  class="flex items-center gap-2 bg-white bg-opacity-20 px-4 py-2 rounded-full hover:bg-opacity-30 transition-all"
+                >
+                  <i class="fab fa-linkedin"></i>
+                  LinkedIn
+                </a>
+
+                <a
+                  href="https://github.com/He-ema"
+                  target="_blank"
+                  class="flex items-center gap-2 bg-white bg-opacity-20 px-4 py-2 rounded-full hover:bg-opacity-30 transition-all"
+                >
+                  <i class="fab fa-github"></i>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- ========================================================= -->
+        <!-- ABOUT -->
+        <!-- ========================================================= -->
+
+        <section class="mb-16" data-aos="fade-up" data-aos-duration="800">
+          <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+            <h2
+              class="text-2xl font-bold mb-6 text-gradient flex items-center gap-3"
+            >
+              <i class="fas fa-user"></i>
+              About Me
+            </h2>
+
+            <p class="text-gray-700 mb-4">
+              I'm a
+              <strong>DevOps Engineer and Computer Science graduate</strong>
+              focused on building automated, scalable, and reliable cloud
+              infrastructure.
+            </p>
+
+            <p class="text-gray-700 mb-4">
+              I work with modern DevOps practices including
+              <strong
+                >CI/CD, Docker, Kubernetes, AWS, Terraform, GitOps, and
+                DevSecOps</strong
+              >.
+            </p>
+
+            <p class="text-gray-700">
+              Before focusing on DevOps, I worked as a
+              <strong>Flutter Developer for 2+ years</strong>, building and
+              maintaining production mobile applications.
+            </p>
+          </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- TECHNICAL SKILLS -->
+        <!-- ========================================================= -->
+
+        <section
+          class="mb-16"
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="200"
+        >
+          <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+            <h2
+              class="text-2xl font-bold mb-6 text-gradient flex items-center gap-3"
+            >
+              <i class="fas fa-cogs"></i>
+              Technical Skills
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <!-- DevOps -->
+
+              <div
+                class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold"
+                data-aos="zoom-in"
+              >
+                <i class="fab fa-linux mr-2"></i>
+                Linux
+              </div>
+
+              <div
+                class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold"
+                data-aos="zoom-in"
+              >
+                <i class="fab fa-git-alt mr-2"></i>
+                Git & GitHub
+              </div>
+
+              <div
+                class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold"
+                data-aos="zoom-in"
+              >
+                <i class="fas fa-terminal mr-2"></i>
+                Bash & Scripting
+              </div>
+
+              <div
+                class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold"
+                data-aos="zoom-in"
+              >
+                <i class="fab fa-docker mr-2"></i>
+                Docker
+              </div>
+
+              <div
+                class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold"
+                data-aos="zoom-in"
+              >
+                <i class="fas fa-dharmachakra mr-2"></i>
+                Kubernetes
+              </div>
+
+              <div
+                class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold"
+                data-aos="zoom-in"
+              >
+                <i class="fas fa-cloud mr-2"></i>
+                AWS
+              </div>
+
+              <div
+                class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold"
+                data-aos="zoom-in"
+              >
+                <i class="fas fa-layer-group mr-2"></i>
+                Terraform
+              </div>
+
+              <div
+                class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold"
+                data-aos="zoom-in"
+              >
+                <i class="fas fa-cogs mr-2"></i>
+                Jenkins CI/CD
+              </div>
+
+              <div
+                class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold"
+                data-aos="zoom-in"
+              >
+                <i class="fas fa-code-branch mr-2"></i>
+                Argo CD / GitOps
+              </div>
+
+              <div
+                class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold"
+                data-aos="zoom-in"
+              >
+                <i class="fas fa-shield-alt mr-2"></i>
+                SonarQube
+              </div>
+
+              <div
+                class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold"
+                data-aos="zoom-in"
+              >
+                <i class="fas fa-search mr-2"></i>
+                Trivy
+              </div>
+
+              <div
+                class="skill-tag text-white px-4 py-3 rounded-xl text-center font-semibold"
+                data-aos="zoom-in"
+              >
+                <i class="fas fa-server mr-2"></i>
+                EC2 / EKS / RDS / S3
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- DEVOPS PROJECT -->
+        <!-- ========================================================= -->
+
+        <section class="mb-16" data-aos="fade-up" data-aos-duration="800">
+          <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+            <h2
+              class="text-2xl font-bold mb-6 text-gradient flex items-center gap-3"
+            >
+              <i class="fas fa-rocket"></i>
+              Featured DevOps Project
+            </h2>
+
+            <div
+              class="bg-gradient-to-br from-blue-50 to-purple-50 p-6 rounded-xl"
+              data-aos="zoom-in"
+            >
+              <div class="flex items-center gap-4 mb-4">
+                <div
+                  class="w-14 h-14 bg-purple-600 rounded-full flex items-center justify-center"
+                >
+                  <i class="fas fa-infinity text-white text-2xl"></i>
+                </div>
+
+                <div>
+                  <h3 class="text-xl font-bold">
+                    End-to-End DevOps CI/CD Pipeline
+                  </h3>
+
+                  <p class="text-sm text-gray-600">
+                    AWS · Kubernetes · Jenkins · Docker · GitOps
+                  </p>
+                </div>
+              </div>
+
+              <!-- Pipeline -->
+
+              <div
+                class="flex flex-wrap justify-center items-center gap-2 my-6 text-sm font-semibold"
+              >
+                <span
+                  class="pipeline-node bg-gray-800 text-white px-3 py-2 rounded-lg"
+                >
+                  GitHub
+                </span>
+
+                <i class="fas fa-arrow-right text-purple-500"></i>
+
+                <span
+                  class="pipeline-node bg-red-500 text-white px-3 py-2 rounded-lg"
+                >
+                  Jenkins
+                </span>
+
+                <i class="fas fa-arrow-right text-purple-500"></i>
+
+                <span
+                  class="pipeline-node bg-blue-500 text-white px-3 py-2 rounded-lg"
+                >
+                  SonarQube
+                </span>
+
+                <i class="fas fa-arrow-right text-purple-500"></i>
+
+                <span
+                  class="pipeline-node bg-green-600 text-white px-3 py-2 rounded-lg"
+                >
+                  Trivy
+                </span>
+
+                <i class="fas fa-arrow-right text-purple-500"></i>
+
+                <span
+                  class="pipeline-node bg-blue-600 text-white px-3 py-2 rounded-lg"
+                >
+                  Docker
+                </span>
+
+                <i class="fas fa-arrow-right text-purple-500"></i>
+
+                <span
+                  class="pipeline-node bg-purple-600 text-white px-3 py-2 rounded-lg"
+                >
+                  Argo CD
+                </span>
+
+                <i class="fas fa-arrow-right text-purple-500"></i>
+
+                <span
+                  class="pipeline-node bg-gray-800 text-white px-3 py-2 rounded-lg"
+                >
+                  AWS EKS
+                </span>
+              </div>
+
+              <p class="text-gray-700 mb-4">
+                Designed and implemented an end-to-end DevOps workflow that
+                automates application delivery from source code to production.
+              </p>
+
+              <ul class="space-y-2 text-gray-700 text-sm">
+                <li>
+                  <i class="fas fa-check text-green-500 mr-2"></i>
+                  Automated CI/CD pipeline using Jenkins
+                </li>
+
+                <li>
+                  <i class="fas fa-check text-green-500 mr-2"></i>
+                  Code quality analysis using SonarQube
+                </li>
+
+                <li>
+                  <i class="fas fa-check text-green-500 mr-2"></i>
+                  Container security scanning using Trivy
+                </li>
+
+                <li>
+                  <i class="fas fa-check text-green-500 mr-2"></i>
+                  Docker image build and registry management
+                </li>
+
+                <li>
+                  <i class="fas fa-check text-green-500 mr-2"></i>
+                  Kubernetes deployment on AWS EKS
+                </li>
+
+                <li>
+                  <i class="fas fa-check text-green-500 mr-2"></i>
+                  GitOps deployment using Argo CD
+                </li>
+              </ul>
+
+              <div class="flex flex-wrap gap-3 mt-6">
+                <a
+                  href="https://github.com/He-ema/register-app"
+                  target="_blank"
+                  class="inline-flex items-center gap-2 bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-700 transition"
+                >
+                  <i class="fab fa-github"></i>
+                  Application Repository
+                </a>
+
+                <a
+                  href="https://github.com/He-ema/gitops-register-app"
+                  target="_blank"
+                  class="inline-flex items-center gap-2 bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 transition"
+                >
+                  <i class="fas fa-code-branch"></i>
+                  GitOps Repository
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- PROFESSIONAL EXPERIENCE -->
+        <!-- ========================================================= -->
+
+        <section class="mb-16" data-aos="fade-up" data-aos-duration="800">
+          <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+            <h2
+              class="text-2xl font-bold mb-6 text-gradient flex items-center gap-3"
+            >
+              <i class="fas fa-briefcase"></i>
+              Professional Experience
+            </h2>
+
+            <div class="space-y-8">
+              <!-- BMS Online -->
+
+              <div
+                class="border-r-4 border-blue-500 pr-6"
+                data-aos="slide-right"
+              >
+                <h3 class="text-xl font-bold mb-2">Flutter Developer — BMS</h3>
+
+                <p class="text-gray-600 mb-3">2 Years</p>
+
+                <p class="text-gray-700">
+                  Developed and maintained production Flutter applications,
+                  working with REST APIs, state management, backend integration,
+                  debugging, and application releases.
+                </p>
+              </div>
+
+              <!-- Freelance -->
+
+              <div
+                class="border-r-4 border-green-500 pr-6"
+                data-aos="slide-right"
+              >
+                <h3 class="text-xl font-bold mb-2">
+                  Freelance Flutter Developer with a saudi arabia company
+                </h3>
+
+                <p class="text-gray-600 mb-3">Remote</p>
+
+                <p class="text-gray-700">
+                  Built custom mobile applications for different clients,
+                  focusing on e-commerce, social media, utility applications,
+                  APIs, Firebase, maps, notifications, and real-time features.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- EDUCATION -->
+        <!-- ========================================================= -->
+
+        <section class="mb-16" data-aos="fade-up" data-aos-duration="800">
+          <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+            <h2
+              class="text-2xl font-bold mb-6 text-gradient flex items-center gap-3"
+            >
+              <i class="fas fa-graduation-cap"></i>
+              Education
+            </h2>
+
+            <!-- University -->
+
+            <div
+              class="flex items-start gap-4 p-5 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl"
+              data-aos="slide-left"
+            >
+              <div
+                class="w-14 h-14 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0"
+              >
+                <i class="fas fa-university text-white text-xl"></i>
+              </div>
+
+              <div>
+                <h3 class="text-xl font-bold mb-1">
+                  Bachelor of Computer Science
+                </h3>
+
+                <p class="text-gray-700 font-medium mb-2">
+                  Faculty of Computer and Informatics
+                </p>
+
+                <p class="text-sm text-gray-600 mb-3">
+                  Zagazig University · Information Technology Department
+                </p>
+
+                <div class="flex flex-wrap gap-2">
+                  <span
+                    class="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full text-sm font-semibold text-purple-700"
+                  >
+                    <i class="fas fa-award"></i>
+                    Grade: A+
+                  </span>
+
+                  <span
+                    class="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full text-sm font-semibold text-blue-700"
+                  >
+                    <i class="fas fa-trophy"></i>
+                    Ranked 10th in the Department
+                  </span>
+
+                  <span
+                    class="inline-flex items-center gap-2 bg-white px-3 py-1 rounded-full text-sm font-semibold text-gray-700"
+                  >
+                    <i class="fas fa-calendar"></i>
+                    2021 – 2025
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        
+        <!-- Education & Certifications -->
+
+        <section
+          class="mb-16"
+          data-aos="fade-up"
+          data-aos-duration="800"
+          data-aos-delay="800"
+        >
+          <div class="bg-white rounded-2xl p-8 shadow-lg card-hover">
+            <h2
+              class="text-2xl font-bold mb-6 text-gradient flex items-center gap-3"
+            >
+              <i class="fas fa-graduation-cap"></i>
+              Certifications
+            </h2>
+
+            <div class="space-y-4">
+             
+
+              <!-- Linux Fundamentals -->
+              <div
+                class="flex items-start gap-4 p-4 bg-gradient-to-r from-gray-50 to-blue-50 rounded-lg"
+                data-aos="slide-right"
+                data-aos-delay="200"
+              >
+                <div
+                  class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fab fa-linux text-white"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold">Linux Fundamentals</h3>
+                  <p class="text-sm text-gray-600">
+                    Linux command line, file systems, permissions, processes,
+                    users, and system administration fundamentals
+                  </p>
+                </div>
+              </div>
+
+              <!-- Bash Scripting -->
+              <div
+                class="flex items-start gap-4 p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg"
+                data-aos="slide-left"
+                data-aos-delay="300"
+              >
+                <div
+                  class="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-terminal text-white"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold">Bash Scripting</h3>
+                  <p class="text-sm text-gray-600">
+                    Shell scripting, automation, variables, conditions, loops,
+                    functions, and command-line tools
+                  </p>
+                </div>
+              </div>
+
+              <!-- Docker -->
+              <div
+                class="flex items-start gap-4 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-lg"
+                data-aos="slide-right"
+                data-aos-delay="400"
+              >
+                <div
+                  class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fab fa-docker text-white"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold">Docker</h3>
+                  <p class="text-sm text-gray-600">
+                    Containerization, Docker images, containers, Dockerfiles,
+                    volumes, networks, and Docker Compose
+                  </p>
+                </div>
+              </div>
+
+              <!-- Git & GitHub -->
+              <div
+                class="flex items-start gap-4 p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg"
+                data-aos="slide-left"
+                data-aos-delay="500"
+              >
+                <div
+                  class="w-12 h-12 bg-gray-700 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fab fa-git-alt text-white"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold">Git & GitHub</h3>
+                  <p class="text-sm text-gray-600">
+                    Version control, branching, merging, pull requests, GitHub
+                    workflows, and collaborative development
+                  </p>
+                </div>
+              </div>
+
+              <!-- Jenkins Fundamentals -->
+              <div
+                class="flex items-start gap-4 p-4 bg-gradient-to-r from-red-50 to-purple-50 rounded-lg"
+                data-aos="slide-right"
+                data-aos-delay="600"
+              >
+                <div
+                  class="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center flex-shrink-0"
+                >
+                  <i class="fas fa-cogs text-white"></i>
+                </div>
+                <div>
+                  <h3 class="font-semibold">Jenkins Fundamentals</h3>
+                  <p class="text-sm text-gray-600">
+                    CI/CD pipelines, Jenkins jobs, Jenkinsfiles, automation,
+                    plugins, credentials, and build pipelines
+                  </p>
+                </div>
+              </div>
+
+             
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================= -->
+        <!-- FOOTER -->
+        <!-- ========================================================= -->
+
+        <footer
+          class="text-center py-8 text-gray-600"
+          data-aos="fade-up"
+          data-aos-duration="800"
+        >
+          <p>&copy; 2026 Ibrahim Osama. All rights reserved.</p>
+
+          <p class="mt-2 text-sm">Building. Automating. Deploying. Scaling.</p>
+        </footer>
+      </div>
+      ```
+    </div>
+
+    <!-- ========================================================= -->
+
+    <!-- AOS -->
+
+    <!-- ========================================================= -->
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <script>
+      AOS.init({
+        duration: 800,
+        easing: "ease-in-out",
+        once: true,
+        mirror: false,
+      }); // =============================================================     // Floating Particles     // =============================================================      function createParticles() {        const container =         document.getElementById('particles-container');        const particleCount = 30;        for (let i = 0; i < particleCount; i++) {          const particle =           document.createElement('div');          particle.classList.add('particle');          const size =           Math.random() * 4 + 2;          particle.style.width =           `${size}px`;          particle.style.height =           `${size}px`;          particle.style.left =           `${Math.random() * 100}%`;          particle.style.top =           `${Math.random() * 100}%`;          const duration =           Math.random() * 10 + 10;          particle.style.animationDuration =           `${duration}s`;          particle.style.animationDelay =           `${Math.random() * 5}s`;          container.appendChild(particle);       }     }       window.addEventListener(       'load',       createParticles     );
+    </script>
+  </body>
 </html>
